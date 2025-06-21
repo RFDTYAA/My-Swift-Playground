@@ -1,0 +1,37 @@
+# .swiftlint.yml
+
+disabled_rules:
+  - line_length             # Kamu sering pakai baris panjang, ini dimatikan
+  - trailing_whitespace     # Kadang ada spasi akhir baris, tidak dianggap masalah
+  - force_cast              # Hindari crash, tapi untuk fleksibilitas dimatikan
+  - identifier_name         # Nama variabel kamu seperti ⁠ favVM ⁠, jadi tidak terlalu dibatasi
+  - type_name               # Biarkan nama class panjang kalau perlu
+  - file_length             # Supaya 1 file bisa panjang (seperti kamu minta semua dalam satu file)
+  - function_body_length    # Karena beberapa fungsi kamu cukup panjang, dimatikan juga
+
+opt_in_rules:
+  - empty_count             # Gunakan ⁠ .isEmpty ⁠ daripada ⁠ .count == 0 ⁠
+  - explicit_init           # Disarankan menulis ⁠ init() ⁠ secara eksplisit
+  - fatal_error_message     # Setiap ⁠ fatalError() ⁠ wajib ada pesan
+  - unused_optional_binding # Tangkap ⁠ if let _ ⁠ yang tidak digunakan
+
+included:
+  - GameCatalog             # Folder proyek utama kamu (bisa diganti jika nama folder beda)
+
+excluded:
+  - Pods
+  - Carthage
+  - .build
+  - Resources               # Folder Resources (gambar, aset) tidak perlu dicek
+  - FavoriteModel.xcdatamodeld # Core Data model tidak perlu dicek juga
+
+reporter: xcode
+
+# Custom rules (opsional, bisa kamu tambah kalau mau)
+custom_rules:
+  no_print:
+    included: "GameCatalog"
+    name: "Avoid using print"
+    regex: "print\\(.*\\)"
+    message: "Gunakan logger resmi, bukan print()"
+    severity: warning
